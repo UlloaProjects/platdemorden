@@ -2,10 +2,11 @@ from django.shortcuts import render
 from project_app.forms import UserForm, UserFileUploadForm
 
 #
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from  django.urls import reverse
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -46,12 +47,11 @@ def register(request):
 
 
 def user_login(request):
-
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        user = authenticate(username=username, password = password)
+        user = authenticate(username=username, password=password)
 
         if user:
             if user.is_active:
@@ -69,15 +69,14 @@ def user_login(request):
 
 @login_required
 def upload_files(request):
-
-    if request.method == 'POST':
+    if request.method == 'post':
 
         form = UserFileUploadForm(request.POST, request.FILES)
+
         if form.is_valid():
             # file is saved
             form.save()
-            return HttpResponseRedirect('/success/url/')
+            return HttpResponseRedirect('project_app/File_Upload_Success.html')
     else:
         form = UserFileUploadForm()
     return render(request, 'project_app/file_upload.html', {'uploads': form})
-
