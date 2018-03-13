@@ -25,7 +25,7 @@ SECRET_KEY = 'm36vvb(e-=p(@e+6t)b6f5qni8qdy61+!k7cd7uu^1kr1w4ft$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['35.173.134.9',]
 
 
 # Application definition
