@@ -1,0 +1,11 @@
+{% extends "project_app/base.html" %}
+{% load staticfiles %}
+{% block body_block %}
+
+    <h1>ingrese sus archivos</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ uploads.as_p }}
+            <input type="submit" value="uploads">
+        </form>
+{% endblock %}
