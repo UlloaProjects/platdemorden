@@ -79,6 +79,7 @@ def upload_files(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            print("guardado")
             return HttpResponseRedirect(reverse('index'))
     else:
 

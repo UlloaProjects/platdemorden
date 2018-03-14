@@ -10,12 +10,14 @@
         <div class="container">
             <ul class="nav navbar-nav">
                 <li><a class="navbar-brand" href="{% url 'index' %}">DJANGO</a></li>
-                <li><a class="navbar-link" href="{% url 'admin:index' %}">ADMIN</a></li>
                 {% if user.is_authenticated %}
                     <li><a class="navbar-link" href="{% url 'project_app:uploads' %}">Cargar archivo</a></li>
-                    <li><a class="navbar-link" href="{% url 'logout' %}">Desconectarse</a></li>
+                    <li><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
+                    {% if user.is_superuser %}
+                        <li><a class="navbar-link" href="{% url 'admin:index' %}">ADMIN</a></li>
+                    {% endif %}
                 {% else %}
-                    <li><a class="navbar-link" href="{% url 'project_app:register' %}">REGISTER</a></li>
+                    <li><a class="navbar-link" href="{% url 'project_app:register' %}">Registro</a></li>
                     <li><a class="navbar-link" href="{% url 'project_app:user_login' %}">identificarse</a></li>
                 {% endif %}
 
