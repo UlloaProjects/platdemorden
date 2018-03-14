@@ -69,14 +69,18 @@ def user_login(request):
 
 @login_required
 def upload_files(request):
-    if request.method == 'post':
 
+
+    if request.method == 'POST':
         form = UserFileUploadForm(request.POST, request.FILES)
 
         if form.is_valid():
-            # file is saved
-            form.save()
-            return HttpResponseRedirect('project_app/File_Upload_Success.html')
+
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return HttpResponseRedirect(reverse('index'))
     else:
+
         form = UserFileUploadForm()
-    return render(request, 'project_app/file_upload.html', {'uploads': form})
+        return render(request, 'project_app/file_upload.html', {'uploads': form})
