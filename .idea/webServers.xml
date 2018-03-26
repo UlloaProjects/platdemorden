@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="f9a7f83a-d03a-4c8f-a164-7eae5c4ff74a" name="aws_ecs2" url="http://ec2-35-173-134-9.compute-1.amazonaws.com">
-        <fileTransfer host="ec2-35-173-134-9.compute-1.amazonaws.com" port="22" privateKey="C:\Users\Andre\Documents\llaves\instanciatesis.pem" accessType="SFTP" keyPair="true">
+      <webServer id="f9a7f83a-d03a-4c8f-a164-7eae5c4ff74a" name="aws_ecs2" url="http://ec2-54-209-129-185.compute-1.amazonaws.com">
+        <fileTransfer host="ec2-54-209-129-185.compute-1.amazonaws.com" port="22" privateKey="C:\Users\Andre\Documents\llaves\instanciatesis.pem" accessType="SFTP" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>

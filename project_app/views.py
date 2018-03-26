@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .models import UserProfileInfo
 
 
 # Create your views here.
@@ -75,7 +76,6 @@ def upload_files(request):
         form = UserFileUploadForm(request.POST, request.FILES)
 
         if form.is_valid():
-
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
