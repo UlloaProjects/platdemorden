@@ -137,3 +137,4 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = '/project_app/user_login'
 
+AUTH_USER_MODEL = 'project_app.User'

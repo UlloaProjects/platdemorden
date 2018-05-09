@@ -1,6 +1,9 @@
 from django.contrib import admin
-from project_app.models import UserProfileInfo
+from django.contrib.auth.admin import UserAdmin
+
+from project_app.models import User,Product,ProductDemand
 # Register your models here.
 
-admin.site.register(UserProfileInfo)
-
+admin.site.register(User, UserAdmin)
+admin.site.register(Product)
+admin.site.register(ProductDemand)

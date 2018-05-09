@@ -1,0 +1,22 @@
+{% extends 'project_app/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block bodyblock %}
+
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.errors }}
+
+            <input type="email" placeholder="Correo" name="username" autocomplete="off"
+                   {% if form.username.value %}value="{{ form.username.value }}"{% endif %}>
+
+            <input type="password" placeholder="Contraseña" name="password">
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+{% endblock %}

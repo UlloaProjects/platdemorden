@@ -1,0 +1,15 @@
+{% extends 'project_app/base.html' %}
+
+{% block bodyblock %}
+    <div class="container">
+        <form  method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.errors }}
+
+            <button type="submit">Upload</button>
+        </form>
+        <p><a href="{% url 'index' %}">Volver a index</a></p>
+    </div>
+{% endblock %}

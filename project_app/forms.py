@@ -1,27 +1,21 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
+from django.forms import models
 
-from project_app.models import UserProfileInfo
+from project_app.models import User
 
 
-class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
+class SignUpForm(UserCreationForm):
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
+    email = forms.EmailField(max_length=254)
 
-    class Meta():
+    class Meta:
         model = User
-        fields = ('username', 'email', 'password')
+        fields = ('first_name', 'last_name', 'email', 'password1', 'password2')
 
 
-class UserFileUploadForm(forms.ModelForm):
-
-    def clean_file(self):
-        file = self.cleaned_data.get("file", False)
-        filetype = magic.from_buffer(file.read())
-        if not "CSV" in filetype:
-            raise ValidationError("File is not CSV.")
-        return file
-
-    class Meta():
-        model = UserProfileInfo
-        fields = ('demand_file', 'order_file')
+class UploadFilesForm(models.ModelForm):
+    class Meta:
+        model = User
+        fields = ('file_one', 'file_two')

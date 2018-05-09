@@ -1,0 +1,12 @@
+{% extends 'project_app/base.html' %}
+
+{% block bodyblock %}
+<div class="container"
+    <h1>Ingrese los archivos requeridos.</h1>
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+</div>
+{% endblock %}

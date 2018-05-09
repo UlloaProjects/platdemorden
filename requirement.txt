@@ -1,3 +1,5 @@
 django
 argon2-cffi
 bcrypt
+pip
+psycopg2

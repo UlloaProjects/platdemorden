@@ -4,15 +4,15 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import UpdateView, DetailView, ListView
 
-from project_app import forms
-from project_app.forms import UploadFilesForm
-from project_app.models import User, ProductDemand, Product, PronosticoSES
+from toy_app import forms
+from toy_app.forms import UploadFilesForm
+from toy_app.models import User, ProductDemand, Product, PronosticoSES
 from django.contrib.auth.decorators import login_required
 import csv
 
 
 def index(request):
-    return render(request, 'project_app/index.html')
+    return render(request, 'toy_app/project_app/index.html')
 
 
 class Register(View):
@@ -33,7 +33,7 @@ class Register(View):
             user.username = user.email
             user.save()
 
-            return render(request, 'project_app/index.html')
+            return render(request, 'toy_app/project_app/index.html')
         else:
             print('error')
             print(form.errors)
@@ -63,7 +63,7 @@ class UserUpdateView(UpdateView):
 
 class UserDetailView(DetailView):
     model = User
-    template_name = 'project_app/User_detail_view.html'
+    template_name = 'toy_app/project_app/User_detail_view.html'
 
 
 @login_required
@@ -84,7 +84,7 @@ def proc_dem_file(request):
                                                                  oficina=oficina,
                                                                  texto_breve_material=txt_breve)
                 date_string = row[3]
-
+                print(date_string)
                 date = datetime.strptime(date_string, '%d/%m/%Y')
                 mes_string = row[4]
                 anno_string = row[5]
@@ -99,14 +99,14 @@ def proc_dem_file(request):
                     anno=anno,
                     demand=demand)
 
-    return render(request, 'project_app/index.html')
+    return render(request, 'toy_app/project_app/index.html')
 
 
 def funcion_demandas(request):
     print("inicio demanda")
     p = Product.objects.filter(owner=request.user)
     ses = 0
-  #  print(len(p))
+    print(len(p))
 
 
     for product in p:
@@ -125,9 +125,9 @@ def funcion_demandas(request):
         demanda_mensual = all_demands[0].demand
         demanda_anual = all_demands[0].demand
         while n < var:
-     #       print("valor de n es:")
-       #     print(n)
-      #      print(all_demands[n - 1].date)
+            print("valor de n es:")
+            print(n)
+            print(all_demands[n - 1].date)
             mes_ini = all_demands[n - 1].mes
             year_ini = all_demands[n - 1].anno
             mes_post = all_demands[n].mes
@@ -138,8 +138,8 @@ def funcion_demandas(request):
                 demanda_mensual = demanda_mensual + my_demand
                 print(demanda_mensual)
             else:
-                #print("no entro al if")
-               # print(demanda_mensual)
+                print("no entro al if")
+                print(demanda_mensual)
                 forecast, created = PronosticoSES.objects.get_or_create(owner=product)
                 forecast.monthly_demand.append(1,demanda_mensual)
                 demanda_mensual = 0
@@ -147,7 +147,7 @@ def funcion_demandas(request):
             n += 1
 
         print(demanda_anual)
-    return render(request, 'project_app/User_detail_view.html')
+    return render(request, 'toy_app/project_app/User_detail_view.html')
 
 
 def metodo_ses(request):

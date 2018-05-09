@@ -15,12 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from django.views.generic import DetailView
 from project_app import views
+from project_app.models import User
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('basic_app/', include('project_app.urls')),
-    path('logout/', views.user_logout, name='logout'),
-    path('special/', views.special, name='special'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
+    path('signup/', views.Register.as_view(), name='signup'),
+    path('my_app/', include('project_app.urls')),
+path(
+    'users/<int:pk>',
+    DetailView.as_view(
+        model = User,
+        template_name = 'project_app/User_detail_view.html'
+    ),
+    name = 'users_detail'
+)
 ]

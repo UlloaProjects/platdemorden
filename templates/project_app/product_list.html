@@ -1,0 +1,12 @@
+{% extends "project_app/base.html" %}
+
+{% block bodyblock %}
+    <h1> Lista de productos</h1>
+    <ol>
+        {% for producto in productos %}
+            <h2><li>{{ producto.texto_breve_material }}</li></h2>
+        {% endfor %}
+        
+
+    </ol>
+{% endblock %}

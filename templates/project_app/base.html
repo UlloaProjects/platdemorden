@@ -12,6 +12,7 @@
                 <li><a class="navbar-brand" href="{% url 'index' %}">Inicio</a></li>
                 {% if user.is_authenticated %}
                     <li><a class="navbar-link" href="{% url 'project_app:uploads' %}">Cargar archivo</a></li>
+                    <li><a class="navbar-link" href="{% url 'project_app:update_files' %}">actualizar archivos</a></li>
                     <li><a class="navbar-link" href="{% url 'logout' %}">Logout</a></li>
                     {% if user.is_superuser %}
                         <li><a class="navbar-link" href="{% url 'admin:index' %}">ADMIN</a></li>
